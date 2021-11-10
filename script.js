@@ -6,10 +6,8 @@ let position = 0;
 
 
 function handleKeyUp(event) {
-    if (event.key == " ") {
-        if (!isJumping) {
-            jump();
-        }
+    if (event.key == " " && !isJumping) {
+        jump();
     }
 }
 
@@ -27,13 +25,13 @@ function jump() {
                     isJumping = false;
                 } else {
                     position -= 20;
-                    dino.style.bottom = position + 'px';
+                    dino.style.bottom = `${position}px`;
                 }
             }, 20);
         } else {
             //subindo
             position += 20
-            dino.style.bottom = position + 'px';
+            dino.style.bottom = `${position}px`;
         }
     }, 20);
 }
@@ -44,7 +42,7 @@ function createCactus() {
     let randomTime = Math.random() * 6000;
 
     cactus.classList.add('cactus');
-    cactus.style.left = window.screen.width + 'px'
+    cactus.style.left = `${window.screen.width}px`
     background.appendChild(cactus);
 
     let leftInterval = setInterval(() => {
@@ -57,7 +55,7 @@ function createCactus() {
             clearInterval(leftInterval);
             document.body.innerHTML = '<h1 class="game-over">FIM DE JOGO</h1><h2 class="game-over">Pressione ESPAÇO para começar novamente</h2>';
             
-            document.addEventListener('keypress', function (event) {
+            document.addEventListener('keypress', (event) => {
                 if (event.key == ' ')
                     document.location.reload(true);
             });
@@ -65,7 +63,7 @@ function createCactus() {
             
         } else {
             cactusPosition -= 10;
-            cactus.style.left = cactusPosition + 'px';
+            cactus.style.left = `${cactusPosition}px`;
         }
     }, 20);
 
